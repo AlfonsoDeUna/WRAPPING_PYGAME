@@ -12,8 +12,12 @@ juego y usando esta librería llegarás más rápido a poner a funcionar tu idea
 ```python
 
 game = Wppygame() # con esto ya creamos una pantalla con evento cerrar
-
+game.init()
 ```
+
+## Generación de mapas
+
+## Generación de personajes
 
 ---
 En construcción
