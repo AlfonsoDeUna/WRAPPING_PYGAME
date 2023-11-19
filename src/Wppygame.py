@@ -25,28 +25,24 @@ class Wppygame:
         fpsClock = pygame.time.Clock()
         pygame.display.set_caption (self.caption)
         
-        #TODO: quitar esto relativas ... !!
         game_map = Map('./src/Maps/tiles.png', './src/Maps/map.txt', 16)            
         game_map.draw(self.SCREEN)    
         personaje = Character(self.SCREEN) 
         running = True
         
-        while running:
+        while running:            
+            
+            fpsClock.tick(self.FPS)
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
-
-            #self.SCREEN.fill((0, 0, 0))
-                   
-            
-            ## Gestión de personajes 
-            
+                    running = False 
             
             personaje.movements()
-            pygame.display.flip()
-            pygame.time.delay(30)        
+                   
             pygame.display.update()
-            fpsClock.tick(self.FPS)
+            game_map.draw(self.SCREEN) 
+       
         pygame.quit()
         sys.exit()               
             

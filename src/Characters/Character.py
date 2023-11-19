@@ -1,4 +1,5 @@
 import pygame
+from Arms.BasicArm import BasicArm
 
 class Character ():
     
@@ -14,9 +15,12 @@ class Character ():
         self.screen = screen
         self.x = x
         self.y = y
+        self.width = 10
+        self.height = 20
         self.direction = direction
         self.velocity = velocity
         self.color =   (255,0,0)
+        self.bullets = []
         #self.draw()
         
     def movements(self):
@@ -33,6 +37,16 @@ class Character ():
             self.y -= self.velocity
         if keys[pygame.K_DOWN]:
             self.y += self.velocity
+            
+         # Disparar balas
+        if keys[pygame.K_SPACE]:
+            self.bullets.append(BasicArm(self.x + self.width // 2, self.y, 80))   
+            
+        for bullet in self.bullets[:]:
+            bullet.update()
+            bullet.draw(self.screen)
+            if bullet.x > 800 or bullet.x < 0:
+                self.bullets.remove(bullet)
 
         # limits--> Hay que crear clases que controlen los límites del mapa o bien añadirlo al mapa
         #TODO: configurar height and with
@@ -44,7 +58,8 @@ class Character ():
         pygame.draw.rect(self.screen, self.color, (self.x, self.y, 10, 20))
 
         # disply update after movements
-    
+        pygame.display.flip()
+        pygame.time.delay(30) 
         
     # basic rectangle element in screen with movements  
     def draw (self):
