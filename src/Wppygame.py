@@ -1,6 +1,6 @@
 import pygame, sys
 from Maps.Map import Map
-from Characters.Character import Character
+from Characters.Character import *
 
 
 class Wppygame:
@@ -20,7 +20,9 @@ class Wppygame:
     def init(self):
         
         pygame.init()
-       
+        all_sprites = pygame.sprite.Group()
+        player = Player()
+        all_sprites.add(player)
         # FPS
         fpsClock = pygame.time.Clock()
         pygame.display.set_caption (self.caption)
