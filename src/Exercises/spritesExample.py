@@ -1,41 +1,7 @@
 import pygame
-import socket
 from Arms.BasicArm import BasicArm
 
-class Client():
-    def __init__(self):
-        self.host = socket.gethostname()
-        self.port = 3000
-        self.conn = self.connection()
-    
-    def close (self):
-        self.conn.close()
-    
-    def conection(self):
-      
-        # creo el socket
-        socket_client = socket.socket()
-        
-        socket_client.connect ((self.host,self.port))
-
-        return socket_client
-        
-        '''mensaje = input (' -> ')
-        
-        while mensaje.lower().strip() != 'adios':
-            
-            socket_client.send(mensaje.encode())
-            
-            datos = socket_client.recv(1024).decode()
-            
-            print ("Mensaje del servidor :" + datos)
-            
-            mensaje = input (' -> ')
-            
-        socket_client.close()
-        '''
-
-class SpreatSheets (Client):
+class SpreatSheets:
     def __init__(self, filename, rows, cols):
         
         # Obtener la imagen de los sprites de los personajes
@@ -188,5 +154,4 @@ class Character (pygame.sprite.Sprite):
     #def draw (self):
         
        #size by while this!!
-     #  pygame.draw.rect(self.screen, self.color, pygame.Rect(self.x, self.y, 10, 20))         
-
+     #  pygame.draw.rect(self.screen, self.color, pygame.Rect(self.x, self.y, 10, 20))        
